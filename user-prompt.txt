@@ -1,0 +1,34 @@
+Create an HTML email digest from these RSS items.
+
+HEADER_DATE: {{formatDate(now; "D MMM YYYY")}}
+FOOTER_DATE: {{formatDate(now; "YYYY-MM-DD")}}
+FOOTER_TIME: {{formatDate(now; "HH:mm")}}
+
+RSS ITEMS:
+{{7.text}}
+
+Instructions:
+- Replace [HEADER_DATE] with the HEADER_DATE value above
+- Replace [FOOTER_DATE] with the FOOTER_DATE value above
+- Replace [FOOTER_TIME] with the FOOTER_TIME value above
+- Select the 3 most significant stories for Today's Must-Knows
+- Select 3 different stories for Rabbit Hole
+- Output complete HTML from <!DOCTYPE html> to </html>
+- Do not stop early — the footer with "Embracing the climb" must appear
+
+---
+
+GMAIL MODULE SETUP
+
+Preheader (hidden div before content):
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+What changed in AI today — explained in 2 minutes.
+</div>
+
+Subject line format:
+The AI Brief | {{formatDate(now; "D MMM")}}
+
+Body type: Raw HTML
+
+Content field:
+[preheader div] + {{3.data.choices[].message.content}}
